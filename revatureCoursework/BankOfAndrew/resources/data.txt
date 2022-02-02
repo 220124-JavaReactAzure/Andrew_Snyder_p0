@@ -1,0 +1,3 @@
+Customer [firstName=test, lastName=test, email=test, username=test, password=test]
+tester:tester:tester:tester:tester:
+test:tester:test@gmail.com:test:etest
