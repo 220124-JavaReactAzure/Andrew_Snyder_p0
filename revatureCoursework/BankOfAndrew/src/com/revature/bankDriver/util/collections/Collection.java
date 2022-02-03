@@ -1,4 +1,4 @@
-package com.revature.bankDriver.util;
+package com.revature.bankDriver.util.collections;
 
 //generics - they're used to help with varying/muiltiple data types
 public interface Collection<T> {

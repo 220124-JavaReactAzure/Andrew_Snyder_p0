@@ -2,6 +2,8 @@ package com.revature.bankDriver.util;
 
 import org.w3c.dom.Node;
 
+import com.revature.bankDriver.util.collections.List;
+
 public class LinkedList<T> implements List<T> {
 	
 	private int size;

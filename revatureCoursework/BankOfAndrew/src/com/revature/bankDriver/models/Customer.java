@@ -1,8 +1,11 @@
 package com.revature.bankDriver.models;
+import java.io.Serializable;
+import java.util.Objects;
 
-public class Customer {
+public class Customer implements Serializable {
 	
 	// attributes/variables
+	private String customerId;
 	private String firstName;
 	private String lastName;
 	private String email;
@@ -10,8 +13,9 @@ public class Customer {
 	private String password;
 	
 	// constructor
-	public Customer(String firstName, String lastName, String email, String username, String password) {
+	public Customer(String customerId, String firstName, String lastName, String email, String username, String password) {
 		super();
+		this.customerId = customerId;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
@@ -88,5 +92,24 @@ public class Customer {
 				+ username + ", password=" + password + "]";
 	}
 
+	@Override
+	public int hashCode() {
+		return Objects.hash(email, firstName, lastName, password, customerId, username);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Customer other = (Customer) obj;
+		return Objects.equals(email, other.email) && Objects.equals(firstName, other.firstName)
+				&& Objects.equals(lastName, other.lastName) && Objects.equals(password, other.password)
+				&& Objects.equals(customerId, other.customerId) && Objects.equals(username, other.username);
+	}
 	
- }
+	
+}

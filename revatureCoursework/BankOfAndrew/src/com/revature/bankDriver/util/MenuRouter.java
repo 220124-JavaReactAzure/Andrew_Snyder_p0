@@ -1,6 +1,7 @@
 package com.revature.bankDriver.util;
 
-import java.awt.Menu;
+import com.revature.bankDriver.menus.Menu;
+import com.revature.bankDriver.util.collections.LinkedList;
 
 public class MenuRouter {
 	private final LinkedList<Menu> menus;
@@ -11,12 +12,12 @@ public class MenuRouter {
 	}
 	
 	public void addMenu(Menu menu) {
-		menu.add(menu);
+		menus.add(menu);
 	}
 	public void transfer (String route) throws Exception{
 		for(int i = 0; i < menus.size(); i++) {
 		Menu currentMenu = menus.get(i);
-		if(currentMenu.getRoute().equals(currentMenu)) {
+		if(currentMenu.getRoute().equals(route)) {
 			 currentMenu.render();
 		}
 	    

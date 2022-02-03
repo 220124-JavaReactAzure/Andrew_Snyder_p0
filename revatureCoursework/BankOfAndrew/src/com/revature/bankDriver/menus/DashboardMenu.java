@@ -8,7 +8,7 @@ public class DashboardMenu extends Menu {
 
 	
 
-	public DashboardMenu(String name, String route, BufferedReader consoleReader, MenuRouter router) {
+	public DashboardMenu(BufferedReader consoleReader, MenuRouter router) {
 		super("Dashboard", "/dashboard", consoleReader, router);
 		// TODO Auto-generated constructor stub
 	}

@@ -1,5 +1,4 @@
-package com.revature.bankDriver.util;
-
+package com.revature.bankDriver.util.collections;
 
 public interface List<T> extends Collection<T>{
 

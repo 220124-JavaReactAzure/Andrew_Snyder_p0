@@ -8,7 +8,7 @@ import static com.revature.bankDriver.util.AppState.shutdown;
 public class WelcomeMenu extends Menu {
 
 	
-	public WelcomeMenu(String name, String route, BufferedReader consoleReader, MenuRouter router) {
+	public WelcomeMenu(BufferedReader consoleReader, MenuRouter router) {
 		super("Welcome", "/welcome", consoleReader, router);
 		// TODO Auto-generated constructor stub
 	}

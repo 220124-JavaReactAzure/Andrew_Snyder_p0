@@ -8,7 +8,7 @@ public class LoginMenu extends Menu {
 
 
 
-	public LoginMenu(String name, String route, BufferedReader consoleReader, MenuRouter router) {
+	public LoginMenu(BufferedReader consoleReader, MenuRouter router) {
 		super("Login", "/login", consoleReader, router);
 		// TODO Auto-generated constructor stub
 	}
