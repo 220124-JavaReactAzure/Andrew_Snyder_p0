@@ -1,30 +1,31 @@
-package com.revature.monster_lab.services;
+package com.revature.bankDriver.services;
 
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.revature.monster_lab.exceptions.InvalidRequestException;
-import com.revature.monster_lab.models.Scientist;
+import com.revature.bankDriver.exceptions.InvalidRequestException;
+import com.revature.bankDriver.models.Customer;
 
 
-public class ScientistServiceTestSuite {
+
+public class CustomerServiceTestSuite {
 	
-	ScientistService sut;
+	CustomerService sut;
 	
 	@Before
 	public void testPrep() {
-		sut = new ScientistService();
+		sut = new CustomerService();
 	}
 	
 	@Test
-	public void test_isScientistValid_returnsTrue_givenValidUser() {
+	public void test_isCustomerValid_returnsTrue_givenValidUser() {
 		
 		// Arrange
-		Scientist validScientist = new Scientist("valid","valid","valid","valid","valid");
+		Customer validCustomer = new Customer("valid","valid","valid","valid","valid");
 		
 		// Act
-		boolean actualResult = sut.isScientistValid(validScientist);
+		boolean actualResult = sut.isCustomerValid(validCustomer);
 		
 		// Assert
 		Assert.assertTrue(actualResult);
@@ -32,18 +33,18 @@ public class ScientistServiceTestSuite {
 	}
 	
 	@Test
-	public void test_isScientistValid_returnsFalse_givenUserWithFirstName() {
+	public void test_isCustomerValid_returnsFalse_givenUserWithFirstName() {
 		
 		// Arrange
-		Scientist invalidScientist1 = new Scientist("","valid","valid","valid","valid");
-		Scientist invalidScientist2 = new Scientist(null,"valid","valid","valid","valid");
-		Scientist invalidScientist3 = new Scientist("         ","valid","valid","valid","valid");
+		Customer invalidCustomer1 = new Customer("","valid","valid","valid","valid");
+		Customer invalidCustomer2 = new Customer(null,"valid","valid","valid","valid");
+		Customer invalidCustomer3 = new Customer("         ","valid","valid","valid","valid");
 		
 		
 		//Act
-		boolean actualResult1 = sut.isScientistValid(invalidScientist1);
-		boolean actualResult2 = sut.isScientistValid(invalidScientist2);
-		boolean actualResult3 = sut.isScientistValid(invalidScientist3);
+		boolean actualResult1 = sut.isCustomerValid(invalidCustomer1);
+		boolean actualResult2 = sut.isCustomerValid(invalidCustomer2);
+		boolean actualResult3 = sut.isCustomerValid(invalidCustomer3);
 		
 		//Assert - everything you assert must pass the condition
 		Assert.assertFalse(actualResult1);
@@ -54,12 +55,12 @@ public class ScientistServiceTestSuite {
 	
 	//TODO: Figure out implementation
 	@Test
-	public void test_registerScientist_returnsTrue_givenValidScientist() {
+	public void test_registerCustomer_returnsTrue_givenValidCustomer() {
 		
 	}
 
 	@Test(expected = InvalidRequestException.class)
-	public void test_registerScientist_throwsInvalidRequestException_givenInvalidUser() {
-		sut.registerNewScientist(null);
+	public void test_registerCustomer_throwsInvalidRequestException_givenInvalidUser() {
+		sut.registerNewCustomer(null);
 	}
 }

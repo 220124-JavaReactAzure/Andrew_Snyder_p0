@@ -16,15 +16,18 @@ public class RegisterMenu extends Menu {
 		this.customerService = customerService;
 	}
 
+
 	@Override
 	public void render() throws Exception {
 		// TODO Auto-generated method stub
 		
 		System.out.println("The User selected Register");
 
-		// Things to obtain from user: first name, last name, email,username, password
+		// Things to obtain from user: first name, last name, email, username, password
 
 		System.out.println("Please provided us with some basic information");
+		
+		
 		System.out.print("First Name: ");
 		String firstName = consoleReader.readLine();
 

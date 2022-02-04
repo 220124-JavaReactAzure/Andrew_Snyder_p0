@@ -12,11 +12,11 @@ package com.revature.bankDriver.daos;
 
 		// Read
 		List<T> findAll();
-		T findById(String id);
+		T findByUsername(String username);
 
 		// Update
 		boolean update(T updatedObj);
 
 		// Delete
-		boolean delete(String id);
+		boolean delete(String username);
 	}

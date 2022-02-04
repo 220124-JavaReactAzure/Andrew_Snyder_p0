@@ -4,6 +4,10 @@ import java.util.Objects;
 
 public class Customer implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	// attributes/variables
 	private String customerId;
 	private String firstName;
@@ -13,9 +17,8 @@ public class Customer implements Serializable {
 	private String password;
 	
 	// constructor
-	public Customer(String customerId, String firstName, String lastName, String email, String username, String password) {
+	public Customer(String firstName, String lastName, String email, String username, String password) {
 		super();
-		this.customerId = customerId;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
@@ -25,6 +28,9 @@ public class Customer implements Serializable {
 
 	
 // getters and setters
+	
+	
+	
 	public String getFirstName() {
 		return firstName;
 	}

@@ -23,7 +23,7 @@ public class AppState {
 		CustomerDAO customerDAO = new CustomerDAO();
 		CustomerService customerService = new CustomerService(customerDAO);
 		router.addMenu(new WelcomeMenu(consoleReader, router));
-		router.addMenu(new RegisterMenu(consoleReader, router));
+		router.addMenu(new RegisterMenu(consoleReader, router, customerService));
 		router.addMenu(new LoginMenu(consoleReader, router, customerService));
 		router.addMenu(new DashboardMenu(consoleReader, router, customerService));
 	

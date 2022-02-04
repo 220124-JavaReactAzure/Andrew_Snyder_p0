@@ -1,9 +1,11 @@
-package com.revature.monster_lab.util;
+package com.revature.bankDriver.util;
 
 import java.sql.Connection;
 
 import org.junit.Assert;
 import org.junit.Test;
+
+import com.revature.bankDriver.util.datasource.ConnectionFactory;
 
 public class ConnectionFactoryTestSuite {
 

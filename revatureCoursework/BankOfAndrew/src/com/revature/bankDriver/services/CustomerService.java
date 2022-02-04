@@ -1,27 +1,73 @@
 package com.revature.bankDriver.services;
 
 import com.revature.bankDriver.models.Customer;
+import com.revature.bankDriver.util.collections.List;
+
+import com.revature.bankDriver.exceptions.AuthenticationException;
+
 import com.revature.bankDriver.daos.CustomerDAO;
 import com.revature.bankDriver.exceptions.InvalidRequestException;
+import com.revature.bankDriver.exceptions.ResourcePersistenceException;
 
 public class CustomerService {
+
+	private final CustomerDAO customerDao;
+	private Customer sessionCustomer;
 	
-	public boolean registerNewCustomer(Customer newCustomer) {
-		if( !isCustomerValid(newCustomer)) {
-			throw new RuntimeException("Invalid user data provider");
+	public CustomerService(CustomerDAO customerDAO) {
+		this.customerDao = customerDAO;
+		this.sessionCustomer = null;
+	}
+	
+
+	public Customer getSessionCustomer() {
+		return sessionCustomer;
+	}
+	
+	public Customer registerNewCustomer(Customer newCustomer) {
+		if(!isCustomerValid(newCustomer)) {
 			throw new InvalidRequestException("Invalid user data provider");
 		}
 
-		// TODO: Write logic that verifies the new users information isn't duplicated int he system
-		customerDAO.create(newCustomer);
-
-
-		return true;
+		boolean usernameAvailable = customerDao.findByUsername(newCustomer.getUsername()) == null;
+		boolean emailAvailable = customerDao.findByEmail(newCustomer.getEmail()) == null;
+		
+		if(!usernameAvailable || !emailAvailable) {
+			if(!usernameAvailable && emailAvailable) {
+				throw new ResourcePersistenceException("The provided username was already taken in the database");
+			} else if(usernameAvailable) {
+				throw new ResourcePersistenceException("The provided email was already taken in the database");
+			} else {
+				throw new ResourcePersistenceException("The provided username and email were already taken in the database");
+			}
+		}
+		
+		Customer persistedCustomer = customerDao.create(newCustomer);
+		
+		if(persistedCustomer == null) {
+			throw new ResourcePersistenceException("The customer could not be persisted");
+		}
+		
+		return persistedCustomer;
 	}
-
+	
+	public List<Customer> getAllCustomers(){
+		return customerDao.findAll();	
+	}
+	
 	//TODO: Implement authentication
-	public Customer autenticateCustomer(String username, String password) {
-		return null;
+	public void authenticateCustomer(String username, String password) {
+		
+		if(username == null || username.trim().equals("") || password == null || password.trim().equals("")) {
+			throw new InvalidRequestException("Either username or password is an invalid entry. Please try logging in again");
+		}
+		
+		Customer authenticatedCustomer = customerDao.findByUsernameAndPassword(username, password);
+		
+		if(authenticatedCustomer == null) {
+			throw new AuthenticationException("Unauthenticated user, information provided was not found in our database.");
+		}
+		sessionCustomer = authenticatedCustomer;
 	}
 
 	public boolean isCustomerValid(Customer newCustomer) {
@@ -34,5 +80,17 @@ public class CustomerService {
 
 
 	}
+	
+	public void logout() {
+		sessionCustomer = null;
+	}
+	
+	public boolean isSessionActive() {
+		return sessionCustomer != null;
+	}
 
-}
+
+	
+
+	}
+
