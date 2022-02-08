@@ -19,8 +19,8 @@ public class WelcomeMenu extends Menu {
 		System.out.println("Welcome to the Bank of Andrew\n" +
 			      "1) Login\n" +
 				  "2) Register\n" +
-				  "3) Exit\n" +
-				  ">"
+				  "3) Exit\n" + 
+				  ">" 
 				  );
 			
 

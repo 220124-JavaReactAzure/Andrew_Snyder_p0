@@ -10,7 +10,7 @@ public class LinkedList<T> implements List<T> {
 	private Node<T> head;
 	private Node<T> tail;
 
-	@Override // scientistLinkedList.add(null)
+	@Override // customerLinkedList.add(null)
 	public boolean add(T element) {
 		
 		if(element == null) {
@@ -64,8 +64,21 @@ public class LinkedList<T> implements List<T> {
 
 	@Override
 	public T get(int index) {
-		// TODO Auto-generated method stub
+		if(index < 0 || index >= size) {
+			throw new IndexOutOfBoundsException();
+		}
+		
+		Node<T> currentNode = head;
+		for(int i = 0; i <= index; i++) {
+			if(i == index) {
+				return currentNode.data;
+			}
+			
+			currentNode = currentNode.nextNode;
+		}
+		
 		return null;
+
 	}
 
 	@Override

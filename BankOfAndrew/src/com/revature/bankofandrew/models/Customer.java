@@ -10,7 +10,6 @@ public class Customer implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	// attributes/variables
-	private String customerId;
 	private String firstName;
 	private String lastName;
 	private String email;
@@ -18,6 +17,11 @@ public class Customer implements Serializable {
 	private String password;
 	
 	// constructor
+	
+	public Customer() {
+		super();
+	}
+	
 	public Customer(String firstName, String lastName, String email, String username, String password) {
 		super();
 		this.firstName = firstName;
@@ -101,7 +105,7 @@ public class Customer implements Serializable {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(email, firstName, lastName, password, customerId, username);
+		return Objects.hash(email, firstName, lastName, password, username);
 	}
 
 	@Override
@@ -115,7 +119,7 @@ public class Customer implements Serializable {
 		Customer other = (Customer) obj;
 		return Objects.equals(email, other.email) && Objects.equals(firstName, other.firstName)
 				&& Objects.equals(lastName, other.lastName) && Objects.equals(password, other.password)
-				&& Objects.equals(customerId, other.customerId) && Objects.equals(username, other.username);
+			 && Objects.equals(username, other.username);
 	}
 	
 	

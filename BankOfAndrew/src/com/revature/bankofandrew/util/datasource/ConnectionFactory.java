@@ -27,7 +27,7 @@ public class ConnectionFactory {
 		
 		// Using .properties for DB credentials (this is to obfuscate)
 		try {
-			prop.load(new FileReader("BankOfAndrew/resources/db.properties"));
+			prop.load(new FileReader("resources/db.properties"));
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

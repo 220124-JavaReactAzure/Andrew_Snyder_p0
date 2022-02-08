@@ -97,7 +97,7 @@ public class CustomerDAO implements CrudDAO<Customer> {
 				Connection conn = ConnectionFactory.getInstance().getConnection()) {
 
 
-			String sql = "insert into customer (customer_id, first_name, last_name, email, username, password) values (?, ?, ?, ?, ?, ?)";
+			String sql = "insert into customer (first_name, last_name, email, username, password) values (?, ?, ?, ?, ?)";
 
 			PreparedStatement ps = conn.prepareStatement(sql);
 
