@@ -26,7 +26,7 @@ public class CustomerService {
 	
 	public Customer registerNewCustomer(Customer newCustomer) {
 		if(!isCustomerValid(newCustomer)) {
-			throw new InvalidRequestException("Invalid user data provider");
+			throw new InvalidRequestException("Invalid user data provided");
 		}
 
 		boolean usernameAvailable = customerDao.findByUsername(newCustomer.getUsername()) == null;

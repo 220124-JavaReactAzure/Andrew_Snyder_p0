@@ -16,7 +16,7 @@ public class WelcomeMenu extends Menu {
 	@Override
 	public void render() throws Exception {
 		
-		System.out.println("Welcome to the Bank of Andrew\n" +
+		System.out.print("Welcome to the Bank of Andrew\n" +
 			      "1) Login\n" +
 				  "2) Register\n" +
 				  "3) Exit\n" + 

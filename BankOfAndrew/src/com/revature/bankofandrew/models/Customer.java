@@ -5,11 +5,13 @@ import java.util.Objects;
 
 public class Customer implements Serializable {
 	
+	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	// attributes/variables
+	private String customerId;
 	private String firstName;
 	private String lastName;
 	private String email;
@@ -24,6 +26,7 @@ public class Customer implements Serializable {
 	
 	public Customer(String firstName, String lastName, String email, String username, String password) {
 		super();
+	
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
@@ -31,11 +34,28 @@ public class Customer implements Serializable {
 		this.password = password;
 	}
 
-	
+	public Customer(String customerId, String firstName, String lastName, String email, String username, String password) {
+		super();
+		this.customerId = customerId;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.username = username;
+		this.password = password;
+	}
+
 // getters and setters
 	
 	
 	
+	public String getCustomerId() {
+		return customerId;
+	}
+
+	public void setCustomerId(String customerId) {
+		this.customerId = customerId;
+	}
+
 	public String getFirstName() {
 		return firstName;
 	}
@@ -80,7 +100,8 @@ public class Customer implements Serializable {
 	public String toFileString() {
 		StringBuilder buildFileString = new StringBuilder();
 		
-		buildFileString.append(firstName).append(":")
+		buildFileString.append(customerId).append(":")
+		               .append(firstName).append(":")
 		               .append(lastName).append(":")
 		               .append(email).append(":")
 		               .append(username).append(":")
@@ -99,13 +120,13 @@ public class Customer implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Customer [firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + ", username="
+		return "Customer [customerId=" + customerId + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + ", username="
 				+ username + ", password=" + password + "]";
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(email, firstName, lastName, password, username);
+		return Objects.hash(customerId, email, firstName, lastName, password, username);
 	}
 
 	@Override
@@ -117,7 +138,7 @@ public class Customer implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Customer other = (Customer) obj;
-		return Objects.equals(email, other.email) && Objects.equals(firstName, other.firstName)
+		return Objects.equals(customerId, other.customerId) && Objects.equals(email, other.email) && Objects.equals(firstName, other.firstName)
 				&& Objects.equals(lastName, other.lastName) && Objects.equals(password, other.password)
 			 && Objects.equals(username, other.username);
 	}

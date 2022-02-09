@@ -2,6 +2,8 @@ package com.revature.bankofandrew.exceptions;
 
 public class AuthenticationException extends RuntimeException {
 
+
+
 	/**
 	 * 
 	 */

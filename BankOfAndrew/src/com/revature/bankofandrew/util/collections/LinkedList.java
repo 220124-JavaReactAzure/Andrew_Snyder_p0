@@ -1,8 +1,6 @@
 package com.revature.bankofandrew.util.collections;
 
-import org.w3c.dom.Node;
 
-import com.revature.bankofandrew.util.collections.List;
 
 public class LinkedList<T> implements List<T> {
 	
@@ -92,6 +90,7 @@ public class LinkedList<T> implements List<T> {
 		
 		public Node(T data) {
 			this.data = data;
+			this.nextNode = null;
 		}
 	}
 

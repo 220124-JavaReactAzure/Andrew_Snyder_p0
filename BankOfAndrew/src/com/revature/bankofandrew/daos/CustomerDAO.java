@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.UUID;
 
 import com.revature.bankofandrew.models.Customer;
 import com.revature.bankofandrew.util.collections.LinkedList;
@@ -17,19 +18,20 @@ public class CustomerDAO implements CrudDAO<Customer> {
 
 		try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
 
-			String sql = "select * from customers where username = ? and password = ?";
+			String sql = "select * from customer where username = ? and pass = ?";
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, username);
 			pstmt.setString(2, password);
 			ResultSet rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				Customer customer = new Customer(sql, sql, sql, sql, sql);
+				Customer customer = new Customer();
+				customer.setCustomerId(rs.getString("customer_id"));
 				customer.setFirstName(rs.getString("first_name"));
 				customer.setLastName(rs.getString("last_name"));
 				customer.setEmail(rs.getString("email"));
 				customer.setUsername(rs.getString("username"));
-				customer.setPassword(rs.getString("password"));
+				customer.setPassword(rs.getString("pass"));
 
 				return customer;
 			}
@@ -42,18 +44,19 @@ public class CustomerDAO implements CrudDAO<Customer> {
 
 	public Customer findByEmail(String email) {
 		try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
-			String sql = "select * from customers where email = ?";
+			String sql = "select * from customer where email = ?";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setString(1, email);
 			ResultSet rs = ps.executeQuery();
 
 			while (rs.next()) {
-				Customer customer = new Customer(sql, sql, sql, sql, sql);
+				Customer customer = new Customer();
+				customer.setCustomerId(rs.getString("customer_id"));
 				customer.setFirstName(rs.getString("first_name"));
 				customer.setLastName(rs.getString("last_name"));
 				customer.setEmail(rs.getString("email"));
 				customer.setUsername(rs.getString("username"));
-				customer.setPassword(rs.getString("password"));
+				customer.setPassword(rs.getString("pass"));
 
 				return customer;
 			}
@@ -67,18 +70,19 @@ public class CustomerDAO implements CrudDAO<Customer> {
 
 	public Customer findByUsername(String username) {
 		try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
-			String sql = "select * from customers where username = ?";
+			String sql = "select * from customer where username = ?";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setString(1, username);
 			ResultSet rs = ps.executeQuery();
 
 			while (rs.next()) {
-				Customer customer = new Customer(sql, sql, sql, sql, sql);
+				Customer customer = new Customer();
+				customer.setCustomerId(rs.getString("customer_id"));
 				customer.setFirstName(rs.getString("first_name"));
 				customer.setLastName(rs.getString("last_name"));
 				customer.setEmail(rs.getString("email"));
 				customer.setUsername(rs.getString("username"));
-				customer.setPassword(rs.getString("password"));
+				customer.setPassword(rs.getString("pass"));
 
 				return customer;
 			}
@@ -92,15 +96,12 @@ public class CustomerDAO implements CrudDAO<Customer> {
 	@Override
 	public Customer create(Customer newCustomer) {
 
-		try (
-
-				Connection conn = ConnectionFactory.getInstance().getConnection()) {
-
-
-			String sql = "insert into customer (first_name, last_name, email, username, password) values (?, ?, ?, ?, ?)";
+		try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
+			newCustomer.setCustomerId(UUID.randomUUID().toString());
+            String sql = "insert into customer (customer_id, first_name, last_name, email, username, pass) values (?, ?, ?, ?, ?, ?)";
 
 			PreparedStatement ps = conn.prepareStatement(sql);
-
+			ps.setString(1, newCustomer.getCustomerId());
 			ps.setString(2, newCustomer.getFirstName());
 			ps.setString(3, newCustomer.getLastName());
 			ps.setString(4, newCustomer.getEmail());
@@ -127,18 +128,19 @@ public class CustomerDAO implements CrudDAO<Customer> {
 		List<Customer> customerList = new LinkedList<>();
 
 		try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
-			String sql = "select * from customers";
+			String sql = "select * from customer";
 			Statement s = conn.createStatement();
 
 			ResultSet resultSet = s.executeQuery(sql);
 
 			while (resultSet.next()) {
-				Customer customer = new Customer(sql, sql, sql, sql, sql);
+				Customer customer = new Customer();
+				customer.setFirstName(resultSet.getString("customer_id"));
 				customer.setFirstName(resultSet.getString("first_name"));
 				customer.setLastName(resultSet.getString("last_name"));
 				customer.setEmail(resultSet.getString("email"));
 				customer.setUsername(resultSet.getString("username"));
-				customer.setPassword(resultSet.getString("password"));
+				customer.setPassword(resultSet.getString("pass"));
 
 				customerList.add(customer);
 			}
@@ -166,6 +168,24 @@ public class CustomerDAO implements CrudDAO<Customer> {
 		return false;
 	}
 
-
+	@Override
+	public Customer findById(String id) {
+		// TODO Auto-generated method stub
+		return null;
 	}
+
+	@Override
+	public boolean update(Double updatedBalance, String AccountId) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean update(Double updatedBalance) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+
+}
 
