@@ -21,7 +21,4 @@ public interface CrudDAO<T> {
 		// Delete
 		boolean delete(String id);
 
-		boolean update(Double updatedBalance, String AccountId);
-
-		boolean update(Double updatedBalance);
-	}
+			}

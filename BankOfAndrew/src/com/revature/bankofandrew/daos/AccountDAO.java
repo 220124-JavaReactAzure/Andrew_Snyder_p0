@@ -21,20 +21,20 @@ public class AccountDAO implements CrudDAO<Account> {
 
 	
 
-	public Account findByUsername(String username) {
+	public Account findByAccountName(String accountName) {
 		
 		try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
 			
 			
 			String sql = "select * from account where username = ?";
 			PreparedStatement pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, username);
+			pstmt.setString(1, accountName);
 			ResultSet rs = pstmt.executeQuery();
 			
 			while (rs.next()) {
 				Account account = new Account();
 				account.setAccountId(rs.getString("account_id"));
-				account.setUsername(rs.getString("username"));
+				account.setAccountName(rs.getString("account_name"));
 				account.setBalance(rs.getDouble("balance"));
 				
 				return account;
@@ -52,11 +52,11 @@ public class AccountDAO implements CrudDAO<Account> {
 	
 			try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
 				newAccount.setAccountId(UUID.randomUUID().toString());
-	            String sql = "insert into account (username, account_id, balance) values (?, ?, ?)";
+	            String sql = "insert into account (account_id, account_name, balance, owner_id) values (?, ?, ?, ?)";
 
 				PreparedStatement pstmt = conn.prepareStatement(sql);
 
-				pstmt.setString(1, newAccount.getUsername());
+				pstmt.setString(1, newAccount.getAccountName());
 				pstmt.setString(2, newAccount.getAccountId());
 				pstmt.setDouble(3, newAccount.getBalance());
 
@@ -87,8 +87,8 @@ public class AccountDAO implements CrudDAO<Account> {
 				ResultSet resultSet = s.executeQuery(sql);{
 			while(resultSet.next()) {
 				Account account = new Account();
-				account.setUsername(resultSet.getString("username"));
-				account.setAccountId(resultSet.getString("accountId"));
+				account.setAccountName(resultSet.getString("account_name"));
+				account.setAccountId(resultSet.getString("account_id"));
 				account.setBalance(resultSet.getDouble("balance"));
 				accountList.add(account);
 		}
@@ -103,15 +103,15 @@ public class AccountDAO implements CrudDAO<Account> {
 	
 
 	
-    public boolean update(Double updatedBalance, String AccountId) {
+    public boolean update(String accountId, Double newBalance) {
 		
 		try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
 
 			String sql = "update account set balance = ? where account_id = ?";
 
 			PreparedStatement ps = conn.prepareStatement(sql);
-			ps.setDouble(1, updatedBalance);
-			ps.setString(2, AccountId);
+			ps.setDouble(1, newBalance);
+			ps.setString(2, accountId);
 			ps.executeUpdate();
 
 			return true;
@@ -141,11 +141,6 @@ public class AccountDAO implements CrudDAO<Account> {
 	}
 
 
-	@Override
-	public boolean update(Double updatedBalance) {
-		// TODO Auto-generated method stub
-		return false;
-	}
 
 
 	@Override

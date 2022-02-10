@@ -23,15 +23,18 @@ public class AccountCreationMenu extends Menu {
 		System.out.println("1 - Account Name");
 		String accountName = consoleReader.readLine();
 		System.out.println("2 - Starting Balance Deposit");
-		Double balance = Double.parseDouble(consoleReader.readLine());
-		Account newAccount = new Account(balance);
+		double balance = Double.parseDouble(consoleReader.readLine());
+		
 
-		if (balance <= 0) {
-			System.out.println("insufficient balance. Please try again");
-			router.transfer("/account-creation");
+		while (!(balance.matches("[0-9]+") && balance.length() >= 1)) {
+			System.out.println("invalid entry. Please try again");
+			System.out.println("Starting Balance Deposit");
+			balance = consoleReader.readLine();
+			
+
 		}
-
-		AccountService.createdAccount(newAccount);
+Account newAccount = new Account(accountName, balance);
+	
 		System.out.println("Redirecting to Dashboard");
 		router.transfer("/dashboard");
 	}

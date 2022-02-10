@@ -174,17 +174,6 @@ public class CustomerDAO implements CrudDAO<Customer> {
 		return null;
 	}
 
-	@Override
-	public boolean update(Double updatedBalance, String AccountId) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean update(Double updatedBalance) {
-		// TODO Auto-generated method stub
-		return false;
-	}
 
 
 }

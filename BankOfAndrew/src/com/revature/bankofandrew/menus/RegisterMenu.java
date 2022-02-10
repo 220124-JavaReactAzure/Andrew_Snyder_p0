@@ -47,7 +47,7 @@ public class RegisterMenu extends Menu {
 
 		Customer customer = new Customer(firstName, lastName, email, username, password);
 
-		System.out.printf("Provided by user: %s\n", customer.toString()).println();
+		//System.out.printf("Provided by user: %s\n", customer.toString()).println();
 
 		try {
 			customerService.registerNewCustomer(customer);

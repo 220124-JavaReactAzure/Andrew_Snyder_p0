@@ -1,20 +1,17 @@
 package com.revature.bankofandrew.models;
 
-import java.io.Serializable;
-import java.util.Objects;
 
-public class Account implements Serializable {
 
-	/**
-	* 
-	*/
-	private static final long serialVersionUID = 1L;
+
+public class Account {
+
+	
 	// attributes/variables
 
 	private Customer owner;
-	private String accountId;
-	private String username;
-	private double balance;
+	private String AccountId;
+	private String AccountName;
+	private Double Balance;
 
 	// constructor
 
@@ -22,85 +19,53 @@ public class Account implements Serializable {
 		super();
 	}
 
-	public Account(Double balance) {
+
+	public Account(String accountId,String accountName, Double balance, Customer owner) {
 		super();
-		this.balance = balance;
+		AccountId = accountId;
+		setAccountName(accountName);
+		Balance = balance;
+		this.owner = owner;
+	}
+	
+	public Account(String accountName, Double balance, Customer owner) {
+		super();
+		 AccountName = accountName;
+		Balance = balance;
+		this.owner = owner;
 
 	}
-
-	public Account(String username, String accountId, Double balance) {
+	public Account(String accountName, Double balance) {
 		super();
-		this.username = username;
-		this.accountId = accountId;
-		this.balance = balance;
+		AccountName = accountName;
+		this.Balance = balance;
 
 	}
 
 	// getters and setters
 
+	public Account(String accountName, String balance) {
+		// TODO Auto-generated constructor stub
+	}
+
+
 	public String getAccountId() {
-		return accountId;
+		return AccountId;
 	}
 
 	public void setAccountId(String accountId) {
-		this.accountId = accountId;
+		AccountId = accountId;
 	}
 
-	public String getUsername() {
-		return username;
+
+	public double getBalance() {
+		return Balance;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
+	public void setBalance(double balance) {
+		this.Balance = balance;
 	}
 
-	public Double getBalance() {
-		return balance;
-	}
-
-	public void setBalance(Double balance) {
-		this.balance = balance;
-	}
-
-	// custom methods
-	public String toFileString() {
-		StringBuilder buildFileString = new StringBuilder();
-
-		buildFileString.append(username).append(":").append(accountId).append(":").append(balance);
-
-		return buildFileString.toString();
-	}
-
-	public void printFromFile(String[] arr) {
-		for (String arrV : arr) {
-			System.out.println(arrV);
-		}
-
-	}
-
-	@Override
-	public String toString() {
-		return "Account [username=" + username + ",accountId=" + accountId + ", balance=" + balance + "]";
-	}
-
-	@Override
-	public int hashCode() {
-		return Objects.hash(username, accountId, balance);
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Account other = (Account) obj;
-		return Objects.equals(username, other.username) && Objects.equals(accountId, other.accountId)
-				&& Objects.equals(balance, other.balance);
-
-	}
 
 	public void setOwner(Customer owner) {
 		this.owner = owner;
@@ -109,5 +74,15 @@ public class Account implements Serializable {
 	public Customer getOwner() {
 		return owner;
 
+	}
+
+
+	public String getAccountName() {
+		return AccountName;
+	}
+
+
+	public void setAccountName(String accountName) {
+		AccountName = accountName;
 	}
 }

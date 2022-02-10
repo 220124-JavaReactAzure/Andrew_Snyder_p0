@@ -6,9 +6,13 @@ import java.io.InputStreamReader;
 import com.revature.bankofandrew.daos.AccountDAO;
 import com.revature.bankofandrew.daos.CustomerDAO;
 import com.revature.bankofandrew.menus.RegisterMenu;
+import com.revature.bankofandrew.menus.TransactionsMenu;
 import com.revature.bankofandrew.menus.WelcomeMenu;
+import com.revature.bankofandrew.menus.WithdrawalMenu;
+import com.revature.bankofandrew.menus.AccountMenu;
 import com.revature.bankofandrew.menus.AccountCreationMenu;
 import com.revature.bankofandrew.menus.DashboardMenu;
+import com.revature.bankofandrew.menus.DepositMenu;
 import com.revature.bankofandrew.menus.LoginMenu;
 import com.revature.bankofandrew.services.AccountService;
 import com.revature.bankofandrew.services.CustomerService;
@@ -40,6 +44,10 @@ public class AppState {
 		router.addMenu(new LoginMenu(consoleReader, router, customerService));
 		router.addMenu(new DashboardMenu(consoleReader, router, customerService));
 		router.addMenu(new AccountCreationMenu(consoleReader, router, accountService));
+		router.addMenu(new WithdrawalMenu(consoleReader, router, accountService));
+		router.addMenu(new DepositMenu(consoleReader, router, accountService));
+		router.addMenu(new TransactionsMenu(consoleReader, router, accountService));
+		router.addMenu(new AccounteMenu(consoleReader, router, accountService));
 		logger.log("Application initialized!");
 	
 	}

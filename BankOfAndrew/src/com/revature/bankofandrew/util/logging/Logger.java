@@ -6,7 +6,7 @@ import java.io.Writer;
 
 public class Logger {
 	
-	private static final String ANSI_GREEN = "\u001B[32m";
+	private static final String ANSI_GREEN = "\u001B[33m";
 	private static final String ANSI_RESET = "\u001B[0m";
 
 	private static Logger logger;
