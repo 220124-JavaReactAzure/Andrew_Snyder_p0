@@ -57,7 +57,7 @@ public class DepositMenu extends Menu {
 		System.out.println("Your new balance is:" + balance);
 
 		accountService.updateBalance(currentAccount);
-		router.transfer("/dahsboard");
+		router.transfer("/dashboard");
 	}
 		}
 

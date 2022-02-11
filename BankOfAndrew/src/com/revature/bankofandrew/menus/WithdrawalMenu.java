@@ -31,6 +31,7 @@ public class WithdrawalMenu extends Menu {
 
 				currentAccount = userList.get(i);
 			}
+		}
 			if (userList.size() == 0) {
 				System.out.println("you don't have an account yet!");
 				router.transfer("/dashboard");
@@ -55,8 +56,9 @@ public class WithdrawalMenu extends Menu {
 			System.out.println("Withdrawing" + subBalance + "from your account");
 			System.out.println("Your new balance is:" + balance);
 			accountService.updateBalance(currentAccount);
+
 			router.transfer("/dashboard");
 		}
 	}
 
-}
+
