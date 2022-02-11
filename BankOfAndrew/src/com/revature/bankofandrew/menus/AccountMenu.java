@@ -12,8 +12,8 @@ public class AccountMenu extends Menu {
 
 		private final AccountService accountService;
 
-		public AccountBalanceMenu(BufferedReader consoleReader, MenuRouter router, AccountService accountService) {
-			super("Account", "/balance", consoleReader, router);
+		public AccountMenu(BufferedReader consoleReader, MenuRouter router, AccountService accountService) {
+			super("AccountMenu", "/balance", consoleReader, router);
 			this.accountService = accountService;
 		}
 
@@ -21,21 +21,21 @@ public class AccountMenu extends Menu {
 		    public void render() throws Exception {
 		    	
 		    	List<Account> userList;
-		    	userList = accountService.findAllAccounts();
+		    	userList = accountService.findAllAccount();
 		    	if(userList.size() == 0) {
 		    		System.out.println("you don't have an account yet!");
 		    		router.transfer("/dashboard");
 		    	}
 		    
-		    	String userSelection = consoleReader.readLine();
-		    	switch(userSelection) {
-		    	case "1":
-		    		System.out.println(
-		    	}
-		    	
-		    	System.out.println("Your balance is:");
+		    	double balance = 0;
+		    	String id = null;
 		    	for (int i = 0; i < userList.size(); i++) {
-		    		System.out.println(userList.get(i).getAccountName() + "\n" + userList.get(i).getBalance());
+		    		balance = userList.get(i).getBalance();
+		    		id = userList.get(i).getAccountName();
+		    	}
+		    		System.out.println("Account ID:" + id + "\n");
+		    		System.out.println("balance:" + balance + "\n");
+		    		router.transfer("/dashboard");
 		    	}
 		}
-}
+

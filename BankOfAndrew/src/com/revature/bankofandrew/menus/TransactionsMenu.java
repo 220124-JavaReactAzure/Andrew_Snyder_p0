@@ -2,17 +2,21 @@ package com.revature.bankofandrew.menus;
 
 import java.io.BufferedReader;
 
+
 import com.revature.bankofandrew.models.Account;
 import com.revature.bankofandrew.services.AccountService;
+import com.revature.bankofandrew.services.CustomerService;
 import com.revature.bankofandrew.util.MenuRouter;
 import com.revature.bankofandrew.util.collections.List;
 
 public class TransactionsMenu extends Menu{
 	
 	private final AccountService accountService;
-	public TransactionsMenu(BufferedReader consoleReader, MenuRouter router, AccountService accountService) {
-		super("Account", "/account", consoleReader, router);
+	private final CustomerService customerService;
+	public TransactionsMenu(BufferedReader consoleReader, MenuRouter router, AccountService accountService, CustomerService customerService) {
+		super("Transactions", "/transactions", consoleReader, router);
 		this.accountService = accountService;
+		this.customerService = customerService;
 		
 	}
 
@@ -21,7 +25,7 @@ public class TransactionsMenu extends Menu{
 		
 		
 		List<Account> userList;	
-		userList = AccountService.findAllAccounts();
+		userList = accountService.findAllAccount();
 		if(userList.size() == 0) {
 			System.out.println("You don't have an account!");
 			 router.transfer("/dashboard");
@@ -43,7 +47,7 @@ public class TransactionsMenu extends Menu{
 			break;
 		case "2":
 			System.out.println("Make a withdrawal...");
-			router.transfer("/withdrawal");
+			router.transfer("/withdraw");
 			break;
 		case "3":
 			System.out.println("Check your Balance...");

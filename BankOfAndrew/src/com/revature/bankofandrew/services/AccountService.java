@@ -40,8 +40,8 @@ public class AccountService {
 		return true;
 	}
 
-	public boolean newBalance(String updatedAccount, double newBalance) {
-		return accountDAO.update(updatedAccount, newBalance);
+	public boolean updateBalance( Account currentAccount) {
+		return accountDAO.update(currentAccount);
 	}
 
 	public List<Account> findMyAccount() {
@@ -49,12 +49,8 @@ public class AccountService {
 	}
 
 	public List<Account> findAllAccount() {
-		return null;
+		return accountDAO.findAll();
 	}
 
-	public List<Account> findAllAccounts() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
+	
 }

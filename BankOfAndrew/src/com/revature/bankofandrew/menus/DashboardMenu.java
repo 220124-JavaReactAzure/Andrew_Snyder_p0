@@ -29,9 +29,8 @@ public class DashboardMenu extends Menu {
 		while (customerService.isSessionActive()) {
 			System.out.println("Welcome " + sessionCustomer.getUsername());
 			String menu = "1) create a bank account\n" + 
-					"2) view balance\n" +
-					"3) make a deposit/withdrawal\n" + 
-					"4) Logout\n" + 
+					"2) transactions\n" + 
+					"3) Logout\n" + 
 					 "> ";
 
 			System.out.print(menu);
@@ -44,14 +43,10 @@ public class DashboardMenu extends Menu {
 				router.transfer("/account-creation");
 				break;
 			case "2":
-				System.out.println("view balance");
-				router.transfer("/view-balance");
-				break;
-			case "3":
-				System.out.println("make a deposit/withdrawal");
+				System.out.println("transactions");
 				router.transfer("/transactions");
 				break;
-			case "4":
+			case "3":
 				customerService.logout();
 				break;
 			default:

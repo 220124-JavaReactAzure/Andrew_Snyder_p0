@@ -154,7 +154,32 @@ public class CustomerDAO implements CrudDAO<Customer> {
 
 		return null;
 	}
+	public static Customer findByAccountId(String accountId) {
 
+		try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
+
+			String sql = "select * from customer where customer_id = ?";
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, accountId);
+			ResultSet rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				Customer customer = new Customer();
+				customer.setCustomerId(rs.getString("customer_id"));
+				customer.setFirstName(rs.getString("first_name"));
+				customer.setLastName(rs.getString("last_name"));
+				customer.setEmail(rs.getString("email"));
+				customer.setUsername(rs.getString("username"));
+				customer.setPassword(rs.getString("pass"));
+
+				return customer;
+			}
+		} catch (SQLException e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return null;
+	}
 	
 	@Override
 	public boolean update(Customer updatedObj) {

@@ -43,11 +43,11 @@ public class AppState {
 		router.addMenu(new RegisterMenu(consoleReader, router, customerService));
 		router.addMenu(new LoginMenu(consoleReader, router, customerService));
 		router.addMenu(new DashboardMenu(consoleReader, router, customerService));
-		router.addMenu(new AccountCreationMenu(consoleReader, router, accountService));
-		router.addMenu(new WithdrawalMenu(consoleReader, router, accountService));
-		router.addMenu(new DepositMenu(consoleReader, router, accountService));
-		router.addMenu(new TransactionsMenu(consoleReader, router, accountService));
-		router.addMenu(new AccounteMenu(consoleReader, router, accountService));
+		router.addMenu(new AccountCreationMenu(consoleReader, router, accountService, customerService));
+		router.addMenu(new WithdrawalMenu(consoleReader, router, accountService, customerService));
+		router.addMenu(new DepositMenu(consoleReader, router, accountService, customerService));
+		router.addMenu(new TransactionsMenu(consoleReader, router, accountService, customerService));
+		router.addMenu(new AccountMenu(consoleReader, router, accountService));
 		logger.log("Application initialized!");
 	
 	}

@@ -9,7 +9,6 @@ public class Account {
 	// attributes/variables
 
 	private Customer owner;
-	private String AccountId;
 	private String AccountName;
 	private Double Balance;
 
@@ -20,13 +19,6 @@ public class Account {
 	}
 
 
-	public Account(String accountId,String accountName, Double balance, Customer owner) {
-		super();
-		AccountId = accountId;
-		setAccountName(accountName);
-		Balance = balance;
-		this.owner = owner;
-	}
 	
 	public Account(String accountName, Double balance, Customer owner) {
 		super();
@@ -49,13 +41,7 @@ public class Account {
 	}
 
 
-	public String getAccountId() {
-		return AccountId;
-	}
 
-	public void setAccountId(String accountId) {
-		AccountId = accountId;
-	}
 
 
 	public double getBalance() {
